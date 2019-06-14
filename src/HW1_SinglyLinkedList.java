@@ -1,6 +1,8 @@
+import org.fest.assertions.ComparableAssert;
+
 import java.util.HashSet;
 
-public class HW1_SinglyLinkedList<T> {
+public class HW1_SinglyLinkedList<T extends Comparable<T>> {
 	private Node<T> head;
 	
 	private class Node<T>{
@@ -147,10 +149,10 @@ public class HW1_SinglyLinkedList<T> {
 	
 	/**
 	 * Detects cycles in the list. Cycles can happen if a given node references an 
-	 * earlier node for the “next” reference. 
+	 * earlier node for the ï¿½nextï¿½ reference. 
 	 */
 	boolean hasCycle() {
-		HashSet<T> node_list = new HashSet<T>();
+		HashSet<T> node_list = new HashSet<>();
 		Node<T> current = head;
 		
 		if(head.data != null) {
@@ -161,6 +163,9 @@ public class HW1_SinglyLinkedList<T> {
 				node_list.add(current.data);
 				current = current.next;
 			}
+            if (node_list.contains(current.data)) {
+                return true;
+            }
 		}
 		return false;
 		
@@ -182,6 +187,45 @@ public class HW1_SinglyLinkedList<T> {
 	 * Checks if linked list is a palindrome.
 	 */
 	boolean isPalindrome() {
-		return false;
+	    HW1_Stack<T> stk = new HW1_Stack<T>();
+		int halfway_index = this.size() / 2;
+		int parity = this.size() % 2;
+		int count = 0;
+		Node<T> current = head;
+
+		while(count <= halfway_index) {
+            stk.push(current.data);
+            current = current.next;
+            count++;
+        }
+        if(parity == 1){
+		    stk.pop();
+        }
+        while(current.next != null){
+		    if (stk.pop() != current.data) {
+                return false;
+            }
+            current = current.next;
+        }
+        if (stk.pop() != current.data) {
+            return false;
+        }
+        if(!stk.isEmpty()){
+		    return false;
+        }
+        return true;
 	}
+
+    public String toString() {
+        StringBuffer result = new StringBuffer(this.size());
+        Node<T> current = head;
+        while(current.next != null){
+            result.append(current.data);
+            result.append(" -> ");
+            current = current.next;
+        }
+        result.append(current.data);
+        result.append(" -> null");
+        return result.toString();
+    }
 }
