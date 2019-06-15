@@ -6,3 +6,5 @@ Test merge conflict 2.
 
 Test rebase.
 Test rebase2.
+
+Test pull request.
