@@ -10,7 +10,7 @@ public class HW1_SinglyLinkedList<T extends Comparable<T>> {
 		private Node<T> next;
 		//private boolean traversed_before;
 		
-		public Node(T value){
+		private Node(T value){
 			data = value;
 			next = null;
 			//traversed_before = false;
@@ -18,14 +18,14 @@ public class HW1_SinglyLinkedList<T extends Comparable<T>> {
 	}
 	
 	public HW1_SinglyLinkedList() {
-		head = new Node<T>(null);
+		head = new Node<>(null);
 	}
 	
 	/**
 	 * Adds a single node containing data to the end of the list.
 	 */
 	void pushBack(T data) {
-		Node<T> node_to_be_added = new Node<T>(data);
+		Node<T> node_to_be_added = new Node<>(data);
 		Node<T> current = head;
 		
 		if(head.data == null) {
@@ -44,7 +44,7 @@ public class HW1_SinglyLinkedList<T extends Comparable<T>> {
 	T popBack() {
 		Node<T> second_to_last = head;
 		Node<T> last = head.next;
-		T last_data = null;
+		T last_data;
 		
 		if(last == null) {
 			last_data = head.data;
@@ -68,7 +68,7 @@ public class HW1_SinglyLinkedList<T extends Comparable<T>> {
 	void insert(int index, T data) {
 		int count = 0;
 		Node<T> current = head;
-		Node<T> node_to_be_added = new Node<T>(data);
+		Node<T> node_to_be_added = new Node<>(data);
 		Node<T> temp;
 		try {
 			if(head.data != null) {
@@ -96,14 +96,22 @@ public class HW1_SinglyLinkedList<T extends Comparable<T>> {
 		Node<T> one_after_erased_node;
 		try {
 			if(head.data != null) {
-				while(count != (index - 1)) {
-					current = current.next;
-					count++;
+				if(index == 0){
+					head = current.next;
 				}
-				//System.out.println(current.data);
-				one_after_erased_node = (current.next).next;
-				//System.out.println(one_after_erased_node.data);
-				current.next = one_after_erased_node;
+				else if(index > this.size()){
+					System.out.println("Index not in list.");
+				}
+				else {
+					while (count != (index - 1)) {
+						current = current.next;
+						count++;
+					}
+					//System.out.println(current.data);
+					one_after_erased_node = (current.next).next;
+					//System.out.println(one_after_erased_node.data);
+					current.next = one_after_erased_node;
+				}
 			}
 		} catch (Exception e){
 			System.out.println("Index not in list.");
@@ -124,11 +132,14 @@ public class HW1_SinglyLinkedList<T extends Comparable<T>> {
 					count++;
 				}
 			}
+			else{
+				return (T)"Index not in list.";
+			}
+			return current.data;
 		} catch (Exception e){
 			System.out.println("Index not in list.");
+			return (T)"";
 		}
-		return current.data;
-		
 	}
 	//unsigned integer 
 	/**
@@ -163,9 +174,7 @@ public class HW1_SinglyLinkedList<T extends Comparable<T>> {
 				node_list.add(current.data);
 				current = current.next;
 			}
-            if (node_list.contains(current.data)) {
-                return true;
-            }
+			return node_list.contains(current.data);
 		}
 		return false;
 		
