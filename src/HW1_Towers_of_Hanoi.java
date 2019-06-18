@@ -1,5 +1,6 @@
 import org.jetbrains.annotations.NotNull;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -18,16 +19,16 @@ public class HW1_Towers_of_Hanoi<T extends Comparable<T>> {
     private HW1_Stack<Disk> rod0;
     private HW1_Stack<Disk> rod1;
     private HW1_Stack<Disk> rod2;
-    private HashMap<Integer, HW1_Stack> hmap;
+    private ArrayList<HW1_Stack<Disk>> list_of_rods;
 
     public HW1_Towers_of_Hanoi(HW1_Stack<Disk> rod_0, HW1_Stack<Disk> rod_1, HW1_Stack<Disk> rod_2){
         rod0 = rod_0;
         rod1 = rod_1;
         rod2 = rod_2;
-        hmap = new HashMap<>();
-        hmap.put(0, rod0);
-        hmap.put(1, rod1);
-        hmap.put(2, rod2);
+        list_of_rods = new ArrayList<>();
+        list_of_rods.add(rod0);
+        list_of_rods.add(rod1);
+        list_of_rods.add(rod2);
     }
 
     public static class Disk implements Comparable<HW1_Towers_of_Hanoi.Disk> {
@@ -53,8 +54,8 @@ public class HW1_Towers_of_Hanoi<T extends Comparable<T>> {
     //unsigned integer
     void moveDisk(int startingRod, int destinationRod){
         Comparable destination_top_disk = null;
-        HW1_Stack starting_stack = hmap.get(startingRod);
-        HW1_Stack destination_stack = hmap.get(destinationRod);
+        HW1_Stack starting_stack = list_of_rods.get(startingRod);
+        HW1_Stack destination_stack = list_of_rods.get(destinationRod);
         Comparable starting_top_disk = starting_stack.pop();
         if(!destination_stack.isEmpty()){
             destination_top_disk = destination_stack.top();
@@ -72,7 +73,7 @@ public class HW1_Towers_of_Hanoi<T extends Comparable<T>> {
     //unsigned integer
     ArrayList<Disk> disksAtRod(int rodIndex){
         ArrayList<Disk> disks_in_rod = new ArrayList<>();
-        HW1_Stack temp = hmap.get(rodIndex);
+        HW1_Stack temp = list_of_rods.get(rodIndex);
         while(!temp.isEmpty()){
             disks_in_rod.add((Disk)temp.pop());
         }
