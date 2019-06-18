@@ -1,26 +1,68 @@
 public class HW1_SinglyLinkedList_Tester {
-	void testPushBackAddsOneNode(){
-		
+	private static void testPushBackAddsOneNode(){
+		HW1_SinglyLinkedList<Integer> li = new HW1_SinglyLinkedList<>();
+		li.pushBack(8);
+		System.out.println(li.popBack());
 	}
-	void testPopBackRemovesCorrectNode() {
-		
+	private static void testPopBackRemovesCorrectNode() {
+		HW1_SinglyLinkedList<Integer> li = new HW1_SinglyLinkedList<>();
+		li.pushBack(8);
+		li.pushBack(10);
+		System.out.println(li.popBack());
+		System.out.println(li.popBack());
 	}
-	void testEraseRemovesCorrectNode() {
-		
+	private static void testEraseRemovesCorrectNode() {
+		HW1_SinglyLinkedList<Integer> li = new HW1_SinglyLinkedList<>();
+		li.pushBack(8);
+		li.pushBack(10);
+		li.pushBack(7);
+		li.erase(0);
+		System.out.println(li);
 	}
-	void testEraseDoesNothingIfNoNode() {
-		
+	private static void testEraseDoesNothingIfNoNode() {
+		//????
+		HW1_SinglyLinkedList<Integer> li = new HW1_SinglyLinkedList<>();
+		li.erase(0);
+		li.pushBack(8);
+		li.pushBack(10);
+		li.pushBack(7);
+		li.erase(10);
+		System.out.println(li);
 	}
-	void testElementAtReturnNode() {
-		
+	private static void testElementAtReturnNode() {
+		HW1_SinglyLinkedList<Integer> li = new HW1_SinglyLinkedList<>();
+		li.pushBack(8);
+		li.pushBack(10);
+		li.pushBack(7);
+		System.out.println(li.elementAt(0));
+		System.out.println(li.elementAt(1));
+		System.out.println(li.elementAt(2));
 	}
-	void testElementAtReturnsNoNodeIfIndexDoesNotExist() {
-		
+	private static void testElementAtReturnsNoNodeIfIndexDoesNotExist() {
+		HW1_SinglyLinkedList<Integer> li = new HW1_SinglyLinkedList<>();
+		System.out.println(li.elementAt(0));
+		li.pushBack(8);
+		li.pushBack(10);
+		li.pushBack(7);
+		System.out.println(li.elementAt(4));
 	}
-	void testSizeReturnsCorrectSize() {
-		
+	private static void testSizeReturnsCorrectSize() {
+		HW1_SinglyLinkedList<Integer> li = new HW1_SinglyLinkedList<>();
+		System.out.println(li.size());
+		li.pushBack(8);
+		li.pushBack(10);
+		li.pushBack(7);
+		System.out.println(li.size());
 	}
 	public static void main(String [] args) {
+		//testPushBackAddsOneNode();
+		//testPopBackRemovesCorrectNode();
+		//testEraseRemovesCorrectNode();
+		//testEraseDoesNothingIfNoNode();
+		//testElementAtReturnNode();
+		//testElementAtReturnsNoNodeIfIndexDoesNotExist();
+		testSizeReturnsCorrectSize();
+		/**
 		HW1_SinglyLinkedList<Integer> li = new HW1_SinglyLinkedList<Integer>();
 		li.pushBack(1);
 		li.pushBack(7);
@@ -49,6 +91,6 @@ public class HW1_SinglyLinkedList_Tester {
 
 		System.out.println(li);
 		System.out.println(li.hasCycle());
-		System.out.println(li.isPalindrome());
+		System.out.println(li.isPalindrome());*/
 	}
 }
