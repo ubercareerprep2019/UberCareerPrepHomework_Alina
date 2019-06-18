@@ -20,7 +20,6 @@ public class HW1_SinglyLinkedList_Tester {
 		System.out.println(li);
 	}
 	private static void testEraseDoesNothingIfNoNode() {
-		//????
 		HW1_SinglyLinkedList<Integer> li = new HW1_SinglyLinkedList<>();
 		li.erase(0);
 		li.pushBack(8);
