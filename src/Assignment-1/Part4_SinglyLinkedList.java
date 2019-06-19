@@ -191,7 +191,7 @@ public class HW1_SinglyLinkedList<T extends Comparable<T>> {
 	 * Checks if linked list is a palindrome.
 	 */
 	boolean isPalindrome() {
-	    HW1_Stack<T> stk = new HW1_Stack<T>();
+	    Part3a_Stack<T> stk = new Part3a_Stack<T>();
 	    int stk_size = this.size();
 		int halfway_index = stk_size / 2;
 		int parity = stk_size % 2;

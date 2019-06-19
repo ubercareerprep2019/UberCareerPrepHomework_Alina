@@ -6,12 +6,12 @@ class HW1_Towers_of_Hanoi_Test extends GroovyTestCase {
         HW1_Towers_of_Hanoi.Disk second_disk = new HW1_Towers_of_Hanoi.Disk(2);
         HW1_Towers_of_Hanoi.Disk third_disk = new HW1_Towers_of_Hanoi.Disk(3);
 
-        HW1_Stack<HW1_Towers_of_Hanoi.Disk> stk0 = new HW1_Stack<>();
+        Part3a_Stack<HW1_Towers_of_Hanoi.Disk> stk0 = new Part3a_Stack<>();
         stk0.push(first_disk);
         stk0.push(second_disk);
         stk0.push(third_disk);
-        HW1_Stack<HW1_Towers_of_Hanoi.Disk> stk1 = new HW1_Stack<>();
-        HW1_Stack<HW1_Towers_of_Hanoi.Disk> stk2 = new HW1_Stack<>();
+        Part3a_Stack<HW1_Towers_of_Hanoi.Disk> stk1 = new Part3a_Stack<>();
+        Part3a_Stack<HW1_Towers_of_Hanoi.Disk> stk2 = new Part3a_Stack<>();
 
         HW1_Towers_of_Hanoi towers = new HW1_Towers_of_Hanoi(stk0, stk1, stk2);
         towers.moveDisk(0, 1);

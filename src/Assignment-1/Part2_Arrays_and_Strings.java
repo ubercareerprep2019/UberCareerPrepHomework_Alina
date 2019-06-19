@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class HW1 {
+public class Part2 {
 	//Part 2
 	/**
 	 * This function takes two strings and returns true if one string is a permutation of 

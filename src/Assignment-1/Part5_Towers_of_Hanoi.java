@@ -1,8 +1,6 @@
 import org.jetbrains.annotations.NotNull;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Towers of Hanoi is a mathematical puzzle where we have three rods and n disks. The objective
@@ -16,12 +14,12 @@ import java.util.HashMap;
  * following methods.
  */
 public class HW1_Towers_of_Hanoi<T extends Comparable<T>> {
-    private HW1_Stack<Disk> rod0;
-    private HW1_Stack<Disk> rod1;
-    private HW1_Stack<Disk> rod2;
-    private ArrayList<HW1_Stack<Disk>> list_of_rods;
+    private Part3a_Stack<Disk> rod0;
+    private Part3a_Stack<Disk> rod1;
+    private Part3a_Stack<Disk> rod2;
+    private ArrayList<Part3a_Stack<Disk>> list_of_rods;
 
-    public HW1_Towers_of_Hanoi(HW1_Stack<Disk> rod_0, HW1_Stack<Disk> rod_1, HW1_Stack<Disk> rod_2){
+    public HW1_Towers_of_Hanoi(Part3a_Stack<Disk> rod_0, Part3a_Stack<Disk> rod_1, Part3a_Stack<Disk> rod_2){
         rod0 = rod_0;
         rod1 = rod_1;
         rod2 = rod_2;
@@ -54,8 +52,8 @@ public class HW1_Towers_of_Hanoi<T extends Comparable<T>> {
     //unsigned integer
     void moveDisk(int startingRod, int destinationRod){
         Comparable destination_top_disk = null;
-        HW1_Stack starting_stack = list_of_rods.get(startingRod);
-        HW1_Stack destination_stack = list_of_rods.get(destinationRod);
+        Part3a_Stack starting_stack = list_of_rods.get(startingRod);
+        Part3a_Stack destination_stack = list_of_rods.get(destinationRod);
         Comparable starting_top_disk = starting_stack.pop();
         if(!destination_stack.isEmpty()){
             destination_top_disk = destination_stack.top();
@@ -73,7 +71,7 @@ public class HW1_Towers_of_Hanoi<T extends Comparable<T>> {
     //unsigned integer
     ArrayList<Disk> disksAtRod(int rodIndex){
         ArrayList<Disk> disks_in_rod = new ArrayList<>();
-        HW1_Stack temp = list_of_rods.get(rodIndex);
+        Part3a_Stack temp = list_of_rods.get(rodIndex);
         while(!temp.isEmpty()){
             disks_in_rod.add((Disk)temp.pop());
         }
