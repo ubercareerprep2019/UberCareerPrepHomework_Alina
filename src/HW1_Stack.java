@@ -34,8 +34,18 @@ public class HW1_Stack<E extends Comparable<E>> {
 				if(temp.length != 0) {
 					min = (E)temp[0];
 				}
+				else{
+					min = null;
+				}
 			}
-			return stack.remove(stack.size() - 1);
+			E popped_object = stack.remove(stack.size() - 1);
+			for(E object: sorted_stack){
+				if(object.equals(popped_object)){
+					sorted_stack.remove(object);
+					break;
+				}
+			}
+			return popped_object;
 		} catch(ArrayIndexOutOfBoundsException e){
 			System.out.println("Nothing left in stack.");
 			return null;

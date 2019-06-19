@@ -41,25 +41,4 @@ public class HW1 {
 		}
 		return result;
 	}
-	
-	//Testing.
-	public static void main(String[] args) {
-		//Testing Part 2: isStringPermutation
-		System.out.println("Testing Part 2: isStringPermutation...");
-		System.out.println(isStringPermutation("Listen", "Silent"));
-		System.out.println(isStringPermutation("happiness", "smile"));
-		System.out.println(isStringPermutation("", "-1"));
-		System.out.println(isStringPermutation("345", "435"));
-		System.out.println("\n");
-		
-		//Testing Part 2: pairsThatEqualSum
-		System.out.println("Testing Part 2: pairsthatEqualSum...");
-		int[] arr1 = {1, 7, 3, 18, 1, 2, 2};
-		ArrayList<ArrayList<Integer>> result = pairsThatEqualSum(arr1, 4);
-		System.out.println(Arrays.toString(result.toArray()));
-		
-		ArrayList<ArrayList<Integer>> result2 = pairsThatEqualSum(arr1, 0);
-		System.out.println(Arrays.toString(result2.toArray()));
-		System.out.println("\n");
-	}
 }

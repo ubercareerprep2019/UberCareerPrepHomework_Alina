@@ -1,5 +1,3 @@
-import org.fest.assertions.ComparableAssert;
-
 import java.util.HashSet;
 
 public class HW1_SinglyLinkedList<T extends Comparable<T>> {
@@ -8,12 +6,10 @@ public class HW1_SinglyLinkedList<T extends Comparable<T>> {
 	private class Node<T>{
 		private T data;
 		private Node<T> next;
-		//private boolean traversed_before;
 		
 		private Node(T value){
 			data = value;
 			next = null;
-			//traversed_before = false;
 		}
 	}
 	
@@ -72,13 +68,20 @@ public class HW1_SinglyLinkedList<T extends Comparable<T>> {
 		Node<T> temp;
 		try {
 			if(head.data != null) {
-				while(count != index) {
-					current = current.next;
-					count++;
+				int one_before_index = index - 1;
+				if(index == 0){
+					node_to_be_added.next = current;
+					head = node_to_be_added;
 				}
-				temp = current.next;
-				current.next = node_to_be_added;
-				node_to_be_added.next = temp;
+				else {
+					while (count < one_before_index) {
+						current = current.next;
+						count++;
+					}
+					temp = current.next;
+					current.next = node_to_be_added;
+					node_to_be_added.next = temp;
+				}
 				
 			}
 		} catch (Exception e){
@@ -99,7 +102,7 @@ public class HW1_SinglyLinkedList<T extends Comparable<T>> {
 				if(index == 0){
 					head = current.next;
 				}
-				else if(index > this.size()){
+				else if(index >= this.size()){
 					System.out.println("Index not in list.");
 				}
 				else {
@@ -107,11 +110,12 @@ public class HW1_SinglyLinkedList<T extends Comparable<T>> {
 						current = current.next;
 						count++;
 					}
-					//System.out.println(current.data);
 					one_after_erased_node = (current.next).next;
-					//System.out.println(one_after_erased_node.data);
 					current.next = one_after_erased_node;
 				}
+			}
+			else{
+				System.out.println("Index not in list.");
 			}
 		} catch (Exception e){
 			System.out.println("Index not in list.");
@@ -132,13 +136,17 @@ public class HW1_SinglyLinkedList<T extends Comparable<T>> {
 					count++;
 				}
 			}
+			else if(index >= this.size()){
+				System.out.println("Index not in list.");
+			}
 			else{
-				return (T)"Index not in list.";
+				System.out.println("Index not in list.");
+				return null;
 			}
 			return current.data;
 		} catch (Exception e){
 			System.out.println("Index not in list.");
-			return (T)"";
+			return null;
 		}
 	}
 	//unsigned integer 
@@ -177,19 +185,6 @@ public class HW1_SinglyLinkedList<T extends Comparable<T>> {
 			return node_list.contains(current.data);
 		}
 		return false;
-		
-		/**
-		Node<T> current = head;
-		if(head.data != null) {
-			while(current.next != null) {
-				if (current.traversed_before == true) {
-					return true;
-				}
-				current.traversed_before = true;
-				current = current.next;
-			}
-		}
-		return false;*/
 	}
 	
 	/**
@@ -197,18 +192,19 @@ public class HW1_SinglyLinkedList<T extends Comparable<T>> {
 	 */
 	boolean isPalindrome() {
 	    HW1_Stack<T> stk = new HW1_Stack<T>();
-		int halfway_index = this.size() / 2;
-		int parity = this.size() % 2;
+	    int stk_size = this.size();
+		int halfway_index = stk_size / 2;
+		int parity = stk_size % 2;
 		int count = 0;
 		Node<T> current = head;
 
-		while(count <= halfway_index) {
+		while(count < halfway_index) {
             stk.push(current.data);
             current = current.next;
             count++;
         }
         if(parity == 1){
-		    stk.pop();
+		    current = current.next;
         }
         while(current.next != null){
 		    if (stk.pop() != current.data) {
