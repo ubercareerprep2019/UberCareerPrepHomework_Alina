@@ -1,8 +1,8 @@
 import org.junit.Assert;
 
-class HW1_Stack_Test extends GroovyTestCase {
-    void testPushAndPop() {
-        HW1_Stack<Integer> stk = new HW1_Stack<Integer>();
+public class Part3a_Stack_Test {
+    public void testPushAndPop() {
+        Part3a_Stack<Integer> stk = new Part3a_Stack<Integer>();
         stk.push(1);
         Assert.assertEquals(1, stk.pop());
 
@@ -14,8 +14,8 @@ class HW1_Stack_Test extends GroovyTestCase {
         Assert.assertEquals(3, stk.pop());
     }
 
-    void testTop() {
-        HW1_Stack<Integer> stk = new HW1_Stack<Integer>();
+    public void testTop() {
+        Part3a_Stack<Integer> stk = new Part3a_Stack<Integer>();
         Assert.assertEquals(null, stk.top());
 
         stk.push(7);
@@ -29,8 +29,8 @@ class HW1_Stack_Test extends GroovyTestCase {
         Assert.assertEquals(null, stk.top());
     }
 
-    void testIsEmpty() {
-        HW1_Stack<Integer> stk = new HW1_Stack<Integer>();
+    public void testIsEmpty() {
+        Part3a_Stack<Integer> stk = new Part3a_Stack<Integer>();
         Assert.assertTrue(stk.isEmpty());
 
         stk.push(7);
@@ -42,8 +42,8 @@ class HW1_Stack_Test extends GroovyTestCase {
         Assert.assertTrue(stk.isEmpty());
     }
 
-    void testMin() {
-        HW1_Stack<Integer> stk = new HW1_Stack<Integer>();
+    public void testMin() {
+        Part3a_Stack<Integer> stk = new Part3a_Stack<Integer>();
         Assert.assertEquals(null, stk.min());
 
         stk.push(7);
@@ -67,8 +67,8 @@ class HW1_Stack_Test extends GroovyTestCase {
         Assert.assertEquals(3, stk.min());
     }
 
-    void testSize() {
-        HW1_Stack<Integer> stk = new HW1_Stack<Integer>();
+    public void testSize() {
+        Part3a_Stack<Integer> stk = new Part3a_Stack<Integer>();
         Assert.assertEquals(0, stk.size());
 
         stk.push(7);
@@ -76,4 +76,5 @@ class HW1_Stack_Test extends GroovyTestCase {
         stk.push(8);
         Assert.assertEquals(3, stk.size());
     }
+
 }

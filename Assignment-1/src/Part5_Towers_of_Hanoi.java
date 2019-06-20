@@ -13,13 +13,13 @@ import java.util.ArrayList;
  * Create a class to implement the Towers of Hanoi puzzle logic. You will need at least the
  * following methods.
  */
-public class HW1_Towers_of_Hanoi<T extends Comparable<T>> {
+public class Part5_Towers_of_Hanoi<T extends Comparable<T>> {
     private Part3a_Stack<Disk> rod0;
     private Part3a_Stack<Disk> rod1;
     private Part3a_Stack<Disk> rod2;
     private ArrayList<Part3a_Stack<Disk>> list_of_rods;
 
-    public HW1_Towers_of_Hanoi(Part3a_Stack<Disk> rod_0, Part3a_Stack<Disk> rod_1, Part3a_Stack<Disk> rod_2){
+    public Part5_Towers_of_Hanoi(Part3a_Stack<Disk> rod_0, Part3a_Stack<Disk> rod_1, Part3a_Stack<Disk> rod_2){
         rod0 = rod_0;
         rod1 = rod_1;
         rod2 = rod_2;
@@ -29,7 +29,7 @@ public class HW1_Towers_of_Hanoi<T extends Comparable<T>> {
         list_of_rods.add(rod2);
     }
 
-    public static class Disk implements Comparable<HW1_Towers_of_Hanoi.Disk> {
+    public static class Disk implements Comparable<Part5_Towers_of_Hanoi.Disk> {
         int size;
         public Disk(int rod_size){
             size = rod_size;

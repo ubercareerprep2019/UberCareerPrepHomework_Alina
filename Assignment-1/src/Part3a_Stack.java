@@ -1,16 +1,17 @@
 import java.util.*;
+import src.Assignment-1;
 
 /**
  * Implementation of stack using ArrayList.
  * @author alina
  * @param <E> element in stack
  */
-public class HW1_Stack<E extends Comparable<E>> {
+public class Part3a_Stack<E extends Comparable<E>> {
 	private ArrayList<E> stack;
 	private ArrayList<E> sorted_stack;
 	private E min = null;
 	
-	public HW1_Stack(){
+	public Part3a_Stack(){
 		stack = new ArrayList<E>();
 		sorted_stack = new ArrayList<E>();
 	}

@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Part2 {
+public class Part2_Arrays_and_Strings {
 	//Part 2
 	/**
 	 * This function takes two strings and returns true if one string is a permutation of 

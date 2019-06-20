@@ -1,6 +1,6 @@
 import java.util.HashSet;
 
-public class HW1_SinglyLinkedList<T extends Comparable<T>> {
+public class Part4_SinglyLinkedList<T extends Comparable<T>> {
 	private Node<T> head;
 	
 	private class Node<T>{
@@ -13,7 +13,7 @@ public class HW1_SinglyLinkedList<T extends Comparable<T>> {
 		}
 	}
 	
-	public HW1_SinglyLinkedList() {
+	public Part4_SinglyLinkedList() {
 		head = new Node<>(null);
 	}
 	

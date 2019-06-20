@@ -1,8 +1,10 @@
+import org.junit.Test;
 import org.junit.Assert;
 
-class HW1_Queue_Test extends GroovyTestCase {
-    void testQueue() {
-        HW1_Queue<Integer> queue = new HW1_Queue<Integer>();
+public class Part3b_Queue_Test {
+    @Test
+    public void testQueue() {
+        Part3b_Queue<Integer> queue = new Part3b_Queue<Integer>();
 
         queue.enqueue(7);
         queue.enqueue(1);
@@ -12,4 +14,5 @@ class HW1_Queue_Test extends GroovyTestCase {
         Assert.assertEquals(1, queue.dequeue());
         Assert.assertEquals(3, queue.dequeue());
     }
+
 }

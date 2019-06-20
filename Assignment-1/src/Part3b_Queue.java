@@ -3,10 +3,10 @@
  * @author alina
  * @param <E> element of queue
  */
-public class HW1_Queue<E extends Comparable<E>> {
+public class Part3b_Queue<E extends Comparable<E>> {
 	Part3a_Stack<E> stk;
 	
-	public HW1_Queue(){
+	public Part3b_Queue(){
 		stk = new Part3a_Stack<E>();
 	}
 	
