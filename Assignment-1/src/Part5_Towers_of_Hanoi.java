@@ -1,4 +1,4 @@
-import org.jetbrains.annotations.NotNull;
+
 
 import java.util.ArrayList;
 
@@ -35,7 +35,7 @@ public class Part5_Towers_of_Hanoi<T extends Comparable<T>> {
             size = rod_size;
         }
 
-        public int compareTo(@NotNull Disk o) {
+        public int compareTo(Disk o) {
             if(o.size > this.size){
                 return 1;
             }

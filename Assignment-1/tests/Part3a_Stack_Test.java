@@ -1,5 +1,4 @@
 import org.junit.Test;
-import java.util.ArrayList;
 import org.junit.Assert;
 
 public class Part3a_Stack_Test {
@@ -7,14 +6,14 @@ public class Part3a_Stack_Test {
     public void testPushAndPop() {
         Part3a_Stack<Integer> stk = new Part3a_Stack<Integer>();
         stk.push(1);
-        Assert.assertEquals(1, stk.pop());
+        Assert.assertEquals(1, (int)stk.pop());
 
         stk.push(3);
         stk.push(4);
         stk.push(1);
-        Assert.assertEquals(1, stk.pop());
-        Assert.assertEquals(4, stk.pop());
-        Assert.assertEquals(3, stk.pop());
+        Assert.assertEquals(1, (int)stk.pop());
+        Assert.assertEquals(4, (int)stk.pop());
+        Assert.assertEquals(3, (int)stk.pop());
     }
 
     @Test
@@ -24,10 +23,10 @@ public class Part3a_Stack_Test {
 
         stk.push(7);
         stk.push(1);
-        Assert.assertEquals(1, stk.top());
+        Assert.assertEquals(1, (int)stk.top());
 
         stk.pop();
-        Assert.assertEquals(7, stk.top());
+        Assert.assertEquals(7, (int)stk.top());
 
         stk.pop();
         Assert.assertEquals(null, stk.top());
@@ -54,14 +53,14 @@ public class Part3a_Stack_Test {
         stk.push(7);
         stk.push(1);
         stk.push(8);
-        Assert.assertEquals(1, stk.min());
+        Assert.assertEquals(1, (int)stk.min());
 
         stk.pop();
         stk.pop();
         stk.pop();
         stk.push(0);
         stk.push(2);
-        Assert.assertEquals(0, stk.min());
+        Assert.assertEquals(0, (int)stk.min());
 
         stk.pop();
         stk.pop();
@@ -69,7 +68,7 @@ public class Part3a_Stack_Test {
         stk.push(12);
         stk.push(3);
         System.out.println(stk);
-        Assert.assertEquals(3, stk.min());
+        Assert.assertEquals(3, (int)stk.min());
     }
 
     @Test
