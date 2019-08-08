@@ -1,5 +1,4 @@
 from __future__ import annotations
-from typing import Type
 
 
 class TreeNode:
@@ -24,7 +23,7 @@ class Part1_Tree:
     Implement a method called print() to print the values of the data in all the TreeNodes in a Tree above.
     """
     # Preorder: root left right
-    def print_preorder(self, root_node) -> None:
+    def print_preorder(self, root_node: TreeNode) -> None:
         left_node = root_node.left
         right_node = root_node.right
         if left_node is None and right_node is None:
@@ -41,7 +40,7 @@ class Part1_Tree:
             self.print_preorder(right_node)
 
     # Postorder: left right root
-    def print_postorder(self, root_node) -> None:
+    def print_postorder(self, root_node: TreeNode) -> None:
         left_node = root_node.left
         right_node = root_node.right
         if left_node is not None and right_node is not None:
@@ -56,7 +55,7 @@ class Part1_Tree:
             self.print_postorder(right_node)
 
     # Inorder: left root right
-    def print_inorder(self, root_node) -> None:
+    def print_inorder(self, root_node: TreeNode) -> None:
         left_node = root_node.left
         right_node = root_node.right
         if left_node is None and right_node is None:
