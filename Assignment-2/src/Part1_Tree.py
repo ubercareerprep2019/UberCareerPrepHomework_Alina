@@ -1,6 +1,9 @@
 from __future__ import annotations
 
 
+"""
+    Class that represents TreeNode of a Tree.
+"""
 class TreeNode:
     data: int = None
     left: TreeNode = None
@@ -12,6 +15,10 @@ class TreeNode:
         self.right = right
 
 
+"""
+    Class that represents Tree implementation that only has the capability to print out a tree 
+    (inorder, preorder, postorder).
+"""
 class Part1_Tree:
     root: TreeNode = None
 
@@ -71,6 +78,7 @@ class Part1_Tree:
             print(root_node.data)
             self.print_inorder(right_node)
 
+    # Prints tree in preorder, postorder, and inorder format.
     def print(self):
         print("preorder: ")
         self.print_preorder(self.root)

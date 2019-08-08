@@ -2,10 +2,13 @@ from __future__ import annotations
 from typing import Type
 import collections
 
+"""
+    Class that represents employee of an organization.
+"""
 class Employee:
-    name: str = None
-    title: str = None
-    directReports: list<Type[Employee]>() = None #employees that report to them
+    name: str = None    # name of employee
+    title: str = None   # title of employee
+    directReports: list<Type[Employee]>() = None    # underling-employees that report to employee
 
     def __init__(self, name: str, title: str, direct_reports: list<Type[Employee]>()):
         self.name = name
@@ -15,15 +18,20 @@ class Employee:
     def __str__(self):
         return "Name: {name}, Title: {title}".format(name=self.name, title=self.title)
 
+"""
+    An organization class, which only understands hierarchy levels.
+"""
 class OrganizationStructure:
-    ceo: Employee = None
-    levels: collections.deque = None
-    current_position: int = None
+    ceo: Employee = None    # head employee
+    employees_by_levels: collections.deque = None    # queue with all employees in level order
+    current_position: int = None    # current position in queue
+    count: int = None
 
     def __init__(self, highest_authority: Employee):
         self.ceo = highest_authority
-        self.levels = collections.deque([self.ceo])
         self.current_position = 0
+        self.count = 1
+        self.employees_by_levels = collections.deque([{self.ceo: 1}])
 
     """
     [Trees - Ex2] Exercise: Printing a tree level by level
@@ -48,15 +56,33 @@ class OrganizationStructure:
     """
     def printLevelByLevel(self):
         self.current_position = 0
-        self.collectEmployeesInQueue(self.ceo)
-        while self.levels:
-            print(self.levels.popleft())
+        self.collectEmployeesInQueue(self.ceo, 2)
 
-    def collectEmployeesInQueue(self, root_employee: Employee):
+    def collectEmployeesInQueue(self, root_employee: Employee, current_level: int):
         if root_employee.directReports is not None:
             for underling in root_employee.directReports:
-                self.levels.append(underling)
+                self.employees_by_levels.append({underling: current_level})
 
         self.current_position += 1
-        if self.current_position < len(self.levels):
-            self.collectEmployeesInQueue(list(self.levels)[self.current_position])
+        if self.current_position < len(self.employees_by_levels):
+            current_node: dict = list(self.employees_by_levels)[self.current_position]
+            current_employee = list(current_node.keys())[0]
+            self.collectEmployeesInQueue(current_employee, current_node.get(current_employee) + 1)
+
+        popped_node = self.employees_by_levels.popleft()
+        popped_employee = list(popped_node.keys())[0]
+        popped_level = popped_node.get(popped_employee)
+
+        if popped_level > self.count:
+            print()
+            self.count += 1
+
+        print(popped_employee)
+
+
+    """
+    [Trees - Ex3] Exercise: Printing the number of levels
+    Implement a method called printNumLevels() for the class OrganizationStructure that prints the number of levels.
+    """
+    def printNumLevels(self):
+        pass
