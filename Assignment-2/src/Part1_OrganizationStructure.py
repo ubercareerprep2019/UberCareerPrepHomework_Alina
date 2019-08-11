@@ -93,6 +93,8 @@ class OrganizationStructure:
 
     """
         Add all employees into employees_by_levels queue.
+        
+        note: uses tail recursion, which is the same as a loop
     """
     def collectEmployeesInQueue(self, root_employee: Employee, current_level: int):
         if root_employee.directReports is not None:
