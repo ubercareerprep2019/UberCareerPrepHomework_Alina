@@ -39,7 +39,7 @@ class BinarySearchTree(Part1_Tree):
             self.root = node_to_be_inserted
             return
         elif key == self.root.key:
-            raise Exception("Node not added; already exists.")
+            raise Exception("Node not added; duplicates not handled.")
 
         while current_node.left is not None and key < current_node.key:
             current_node = current_node.left
