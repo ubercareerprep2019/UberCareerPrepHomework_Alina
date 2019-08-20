@@ -1,12 +1,15 @@
 from typing import Dict, List
+from collections import deque
 
 """
     [Graphs - Ex1] Exercise: Implement a graph using adjacency list. You can assume it's an undirected graph.
 """
 class GraphNode:
     data: int
+    has_visited: bool
     def __init__(self, data: int):
         self.data = data
+        self.has_visited = False
 
     def __str__(self):
         return str(self.data)
@@ -90,13 +93,27 @@ class GraphWithAdjacencyList:
 
     """
     [Graphs - Ex2] Exercise: DFS Traversal
-    Write a method to perform DFS(int key) traverses DFS  starting from key printing each node along the way. 
+    Write a method to perform DFS(int key) traverses DFS starting from key printing each node along the way. 
     
     Depth-First Traversal: A depth-first traversal starts at an arbitrary root node and explores nodes as deep as 
     possible along each branch before exploring nodes at the same level. 
     """
-    def DFS(self, key: int):
-        pass
+    def DFS(self, key: int) -> None:
+        for vertex in self.adjNodes:
+            if vertex.data == key:
+                print(vertex)
+                vertex.has_visited = True
+                self.DFS_helper(vertex)
+                return
+
+    def DFS_helper(self, root_vertex: GraphNode) -> None:
+        adjacent_vertices = self.adjNodes[root_vertex]
+
+        for vertex in adjacent_vertices:
+            if vertex.has_visited == False:
+                print(vertex)
+                vertex.has_visited = True
+                self.DFS_helper(vertex)
 
     """
     [Graphs - Ex3] Exercise: BFS Traversal
@@ -106,11 +123,30 @@ class GraphWithAdjacencyList:
     all neighboring nodes at the same level before going deeper in the graph.
     """
     def BFS(self, key: int):
-        pass
+        queue = deque()
+
+        for vertex in self.adjNodes:
+            if vertex.data == key:
+                queue.append(vertex)
+                vertex.has_visited = True
+                while queue:
+                    self.BFS_helper(queue.popleft(), queue)
+                return
+
+    def BFS_helper(self, root_vertex: GraphNode, queue: deque()):
+        print(root_vertex)
+        adjacent_vertices = self.adjNodes[root_vertex]
+
+        for vertex in adjacent_vertices:
+            if vertex.has_visited is False:
+                queue.append(vertex)
+                vertex.has_visited = True
+
 
     """
     [Graphs - Ex4] Exercise: Minimum number of edges between two nodes of a Graph
     Write a method minNumberOfEdges(int node1, int node2) that returns the minimum number of edges between two nodes.
     """
     def minNumberOfEdges(self, node1: int, node2: int):
-        pass
+
+    def minNumberOfEdges_helper(self, ):

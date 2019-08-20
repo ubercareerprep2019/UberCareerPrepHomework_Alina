@@ -47,8 +47,6 @@ class Part1_PhoneBook_Test(TestCase):
         phone_book.insert("DEF", 2222222222)
 
         assert phone_book.find("ABC") == 1111111111
-        print(phone_book.find("DEF"))
-
         assert phone_book.find("DEF") == 2222222222
         print(phone_book.find("XYZ"))
         assert phone_book.find("XYZ") == 9999999999

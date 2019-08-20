@@ -140,31 +140,6 @@ class BinarySearchTreePhoneBook(PhoneBook):
         elif current_node.name > name:
             current_node.right = entry
 
-        self.root.height = 1 + max((self.root.left).height, (self.root.right).height)
-
-        imbalance: int = self.check_imbalance()
-
-        if imbalance > 1:
-            pass
-
-
-    def check_imbalance(self):
-        if self.root is None:
-            return 0
-
-        return (self.root.left).height - (self.root.right).height
-
-    def left_rotate(self):
-        swing: PhoneBookNode = self.root.right
-        dangle: PhoneBookNode = swing.left
-
-        swing.left = self.root
-        self.root.right = dangle
-
-        self.root = swing
-
-    def right_rotate(self):
-
 
     """
     Returns the phone number associated with a name in the phone book.
@@ -182,11 +157,14 @@ class BinarySearchTreePhoneBook(PhoneBook):
             return -1
         elif current_node.name == name:
             return current_node.phoneNumber
-        elif current_node.name > name:
+        elif current_node.name > name and current_node.left is not None:
             return self.find_helper(name, current_node.left)
-        elif current_node.name < name:
+        elif current_node.name > name and current_node.left is None:
             return self.find_helper(name, current_node.right)
-
+        elif current_node.name < name and current_node.right is not None:
+            return self.find_helper(name, current_node.right)
+        elif current_node.name < name and current_node.right is None:
+            return self.find_helper(name, current_node.left)
 
 
 """
@@ -197,11 +175,9 @@ class PhoneBookNode():
     phoneNumber: int = None
     left: PhoneBookNode = None
     right: PhoneBookNode = None
-    height: int = None
 
     def __init__(self, name, phoneNumber, left, right):
         self.name = name
         self.phoneNumber = phoneNumber
         self.left = left
         self.right = right
-        self.height = 1

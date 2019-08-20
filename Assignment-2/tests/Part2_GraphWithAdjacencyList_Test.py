@@ -73,3 +73,41 @@ class GraphWithAdjacencyListTest(TestCase):
         for node in adjacent_nodes:
             print(node)
         print()
+
+    def test_DFS(self):
+        graph = GraphWithAdjacencyList()
+
+        graph.addNode(2)
+        graph.addNode(0)
+        graph.addNode(1)
+        graph.addNode(3)
+
+        graph.addEdge(2, 0)
+        graph.addEdge(0, 1)
+        graph.addEdge(2, 1)
+        graph.addEdge(2, 3)
+
+        graph.DFS(2)
+
+    def test_BFS(self):
+        graph = GraphWithAdjacencyList()
+
+        graph.addNode(2)
+        graph.addNode(0)
+        graph.addNode(1)
+        graph.addNode(3)
+
+        graph.addEdge(2, 0)
+        graph.addEdge(0, 1)
+        graph.addEdge(2, 1)
+        graph.addEdge(2, 3)
+
+        graph.addNode(4)
+        graph.addNode(5)
+        graph.addEdge(3, 4)
+        graph.addEdge(3, 5)
+
+        graph.addNode(6)
+        graph.addEdge(4, 6)
+
+        graph.BFS(2)
