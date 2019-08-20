@@ -1,75 +1,80 @@
 from unittest import TestCase
-from Part2_GraphWithAdjacencyList import GraphNode, GraphWithAdjacencyList
+from Part2_GraphWithAdjacencyList import GraphWithAdjacencyList
 
 
 class GraphWithAdjacencyListTest(TestCase):
-    def test_addNode_and_removeNode(self):
+    def test_add_node_and_remove_node(self):
         graph = GraphWithAdjacencyList()
 
-        graph.addNode(7)
-        graph.addNode(4)
-        graph.addNode(2)
-        graph.addNode(0)
-        graph.addNode(6)
+        graph.add_node(7)
+        graph.add_node(4)
+        graph.add_node(2)
+        graph.add_node(0)
+        graph.add_node(6)
 
-        assert graph.getAdjNodes(7) is None
-        assert graph.getAdjNodes(4) is None
-        assert graph.getAdjNodes(2) is None
-        assert graph.getAdjNodes(0) is None
-        assert graph.getAdjNodes(6) is None
+        assert not graph.get_adj_nodes(7)
+        assert not graph.get_adj_nodes(4)
+        assert not graph.get_adj_nodes(2)
+        assert not graph.get_adj_nodes(0)
+        assert not graph.get_adj_nodes(6)
 
-        graph.removeNode(7)
-        #assert graph.getAdjNodes(7) == KeyError
+        graph.remove_node(7)
+        try:
+            graph.get_adj_nodes(7)
+        except KeyError:
+            pass
+        else:
+            assert False
 
 
-    def test_addEdge_and_removeEdge(self):
+    def test_add_edge_and_remove_edge(self):
         graph = GraphWithAdjacencyList()
 
-        graph.addNode(7)
-        graph.addNode(4)
-        graph.addNode(2)
-        graph.addNode(0)
-        graph.addNode(6)
+        graph.add_node(7)
+        graph.add_node(4)
+        graph.add_node(2)
+        graph.add_node(0)
+        graph.add_node(6)
 
-        graph.addEdge(7, 2)
-        graph.addEdge(7, 4)
-        graph.addEdge(4, 6)
-        graph.addEdge(4, 2)
-        graph.addEdge(6, 0)
-        graph.addEdge(2, 0)
+        graph.add_edge(7, 2)
+        graph.add_edge(7, 4)
+        graph.add_edge(4, 6)
+        graph.add_edge(4, 2)
+        graph.add_edge(6, 0)
+        graph.add_edge(2, 0)
 
-        adjacent_nodes = graph.getAdjNodes(7)
+        adjacent_nodes = graph.get_adj_nodes(7)
         for node in adjacent_nodes:
             print(node)
         print()
 
-        adjacent_nodes = graph.getAdjNodes(4)
+        adjacent_nodes = graph.get_adj_nodes(4)
         for node in adjacent_nodes:
             print(node)
         print()
 
-        adjacent_nodes = graph.getAdjNodes(2)
+        adjacent_nodes = graph.get_adj_nodes(2)
         for node in adjacent_nodes:
             print(node)
         print()
 
-        adjacent_nodes = graph.getAdjNodes(0)
+        adjacent_nodes = graph.get_adj_nodes(0)
         for node in adjacent_nodes:
             print(node)
         print()
 
-        adjacent_nodes = graph.getAdjNodes(6)
+        adjacent_nodes = graph.get_adj_nodes(6)
         for node in adjacent_nodes:
             print(node)
         print()
 
-        graph.removeEdge(0, 2)
-        adjacent_nodes = graph.getAdjNodes(0)
+        graph.remove_edge(0, 2)
+        adjacent_nodes = graph.get_adj_nodes(0)
         for node in adjacent_nodes:
             print(node)
         print()
 
-        adjacent_nodes = graph.getAdjNodes(2)
+        adjacent_nodes = graph.get_adj_nodes(2)
         for node in adjacent_nodes:
             print(node)
         print()
@@ -77,37 +82,60 @@ class GraphWithAdjacencyListTest(TestCase):
     def test_DFS(self):
         graph = GraphWithAdjacencyList()
 
-        graph.addNode(2)
-        graph.addNode(0)
-        graph.addNode(1)
-        graph.addNode(3)
+        graph.add_node(2)
+        graph.add_node(0)
+        graph.add_node(1)
+        graph.add_node(3)
 
-        graph.addEdge(2, 0)
-        graph.addEdge(0, 1)
-        graph.addEdge(2, 1)
-        graph.addEdge(2, 3)
+        graph.add_edge(2, 0)
+        graph.add_edge(0, 1)
+        graph.add_edge(2, 1)
+        graph.add_edge(2, 3)
 
-        graph.DFS(2)
+        graph.dfs(2)
 
     def test_BFS(self):
         graph = GraphWithAdjacencyList()
 
-        graph.addNode(2)
-        graph.addNode(0)
-        graph.addNode(1)
-        graph.addNode(3)
+        graph.add_node(2)
+        graph.add_node(0)
+        graph.add_node(1)
+        graph.add_node(3)
 
-        graph.addEdge(2, 0)
-        graph.addEdge(0, 1)
-        graph.addEdge(2, 1)
-        graph.addEdge(2, 3)
+        graph.add_edge(2, 0)
+        graph.add_edge(0, 1)
+        graph.add_edge(2, 1)
+        graph.add_edge(2, 3)
 
-        graph.addNode(4)
-        graph.addNode(5)
-        graph.addEdge(3, 4)
-        graph.addEdge(3, 5)
+        graph.add_node(4)
+        graph.add_node(5)
+        graph.add_edge(3, 4)
+        graph.add_edge(3, 5)
 
-        graph.addNode(6)
-        graph.addEdge(4, 6)
+        graph.add_node(6)
+        graph.add_edge(4, 6)
 
-        graph.BFS(2)
+        graph.bfs(2)
+
+    def test_min_number_of_edges(self):
+        graph = GraphWithAdjacencyList()
+
+        graph.add_node(3)
+        graph.add_node(4)
+        graph.add_node(5)
+        graph.add_node(6)
+        graph.add_node(0)
+        graph.add_node(1)
+        graph.add_node(2)
+
+        graph.add_edge(3, 4)
+        graph.add_edge(4, 5)
+        graph.add_edge(4, 6)
+        graph.add_edge(0, 4)
+        graph.add_edge(0, 2)
+        graph.add_edge(0, 1)
+        graph.add_edge(1, 2)
+        graph.add_edge(5, 2)
+
+        assert graph.min_number_of_edges(1, 5) == 2
+        assert graph.min_number_of_edges(6, 1) == 3
