@@ -33,22 +33,24 @@ class BinarySearchTree(Part1_Tree):
     @param key The key to insert.
     """
     def insert(self, key: int):
-        node_to_be_inserted = Node(key)
+        entry = Node(key)
         current_node = self.root
-        if self.root is None:
-            self.root = node_to_be_inserted
-            return
-        elif key == self.root.key:
-            raise Exception("Node not added; duplicates not handled.")
+        parent_node = self.root
 
-        while current_node.left is not None and key < current_node.key:
-            current_node = current_node.left
-        while current_node.right is not None and key > current_node.key:
-            current_node = current_node.right
-        if key < current_node.key:
-            current_node.left = node_to_be_inserted
-        elif key > current_node.key:
-            current_node.right = node_to_be_inserted
+        while current_node:
+            parent_node = current_node
+            assert current_node.key != key
+            if current_node.key > key:
+                current_node = current_node.left
+            elif current_node.key < key:
+                current_node = current_node.right
+
+        if parent_node is None:
+            self.root = entry
+        elif parent_node.key > key:
+            parent_node.left = entry
+        elif parent_node.key < key:
+            parent_node.right = entry
 
     """
     Checks whether or not a key exists in this binary search tree.

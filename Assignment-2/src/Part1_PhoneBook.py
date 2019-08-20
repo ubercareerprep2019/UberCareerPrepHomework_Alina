@@ -124,21 +124,22 @@ class BinarySearchTreePhoneBook(PhoneBook):
     def insert(self, name: str, phoneNumber: int) -> None:
         entry = PhoneBookNode(name, phoneNumber, None, None)
         current_node = self.root
+        parent_node = self.root
 
-        if self.root is None:
+        while current_node:
+            parent_node = current_node
+            assert current_node.name != name
+            if current_node.name > name:
+                current_node = current_node.left
+            elif current_node.name < name:
+                current_node = current_node.right
+
+        if parent_node is None:
             self.root = entry
-            return
-        elif self.root.name == name:
-            raise Exception("Phone number not added; duplicates not handled.")
-
-        while current_node.left is not None and current_node.name > name:
-            current_node = current_node.left
-        while current_node.right is not None and current_node.name < name:
-            current_node = current_node.right
-        if current_node.name < name:
-            current_node.left = entry
-        elif current_node.name > name:
-            current_node.right = entry
+        elif parent_node.name > name:
+            parent_node.left = entry
+        elif parent_node.name < name:
+            parent_node.right = entry
 
 
     """
@@ -166,6 +167,18 @@ class BinarySearchTreePhoneBook(PhoneBook):
         elif current_node.name < name and current_node.right is None:
             return self.find_helper(name, current_node.left)
 
+    """
+    Prints out tree.
+    """
+    def print(self):
+        stack = [self.root]
+        while stack:
+            node = stack.pop()
+            print(node)
+            if node.left:
+                stack.append(node.left)
+            if node.right:
+                stack.append(node.right)
 
 """
     Node for phone-book.
@@ -181,3 +194,6 @@ class PhoneBookNode():
         self.phoneNumber = phoneNumber
         self.left = left
         self.right = right
+
+    def __str__(self):
+        return "{} {} {} {}".format(self.name, self.phoneNumber, self.left is not None, self.right is not None)

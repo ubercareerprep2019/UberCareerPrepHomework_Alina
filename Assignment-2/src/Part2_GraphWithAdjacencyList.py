@@ -1,4 +1,4 @@
-from typing import Dict, List
+from typing import Dict, List, Deque
 from collections import deque
 
 """
@@ -133,7 +133,7 @@ class GraphWithAdjacencyList:
                     self.BFS_helper(queue.popleft(), queue)
                 return
 
-    def BFS_helper(self, root_vertex: GraphNode, queue: deque()):
+    def BFS_helper(self, root_vertex: GraphNode, queue: Deque[GraphNode]):
         print(root_vertex)
         adjacent_vertices = self.adjNodes[root_vertex]
 
@@ -148,5 +148,6 @@ class GraphWithAdjacencyList:
     Write a method minNumberOfEdges(int node1, int node2) that returns the minimum number of edges between two nodes.
     """
     def minNumberOfEdges(self, node1: int, node2: int):
+
 
     def minNumberOfEdges_helper(self, ):

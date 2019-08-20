@@ -28,6 +28,7 @@ In this program, you will:
 """
 
 def get_bigO_of_unordered_list(data_file: str, search_file: str) -> None:
+    print("Printing out unordered list info...")
     data = open(data_file, "r")
     search_data = open(search_file, "r")
 
@@ -35,28 +36,29 @@ def get_bigO_of_unordered_list(data_file: str, search_file: str) -> None:
 
     start_time = time.time()
     for line in data:
+        line = line.strip()
         name, number = line.split(",")
         phone_book.insert(name, number)
-    print("Insert took %s% milliseconds.", int(round(time.time() - start_time)*1000))
+    print("Insert took {} milliseconds.".format((time.time() - start_time) * 1000))
 
-    if phone_book.size() != 1000000:
-        raise Exception("Did not insert all data.")
+    assert phone_book.size() == 1000000
     print("The size of the PhoneBook is 1000000.")
 
     num_of_finds: int = 0
     start_time = time.time()
     for line in search_data:
-        if phone_book.find(line) == -1:
-            raise Exception("Did not find someone in the phone book.")
+        line = line.strip()
+        assert phone_book.find(line) != -1
         num_of_finds += 1
 
-    if num_of_finds != 1000:
-        raise Exception("Did not find all names in phone book.")
+    assert num_of_finds == 1000
     print("find() was called 1000 times.")
 
-    print("Search took %s% milliseconds.", time.time() - start_time)
+    print("Search took {} milliseconds.".format((time.time() - start_time) * 1000))
+    print()
 
 def get_bigO_of_bst(data_file: str, search_file: str) -> None:
+    print("Printing out bst info...")
     data = open(data_file, "r")
     search_data = open(search_file, "r")
 
@@ -64,37 +66,48 @@ def get_bigO_of_bst(data_file: str, search_file: str) -> None:
 
     start_time = time.time()
     for line in data:
+        line = line.strip()
         name, number = line.split(",")
         phone_book.insert(name, number)
-    print("Insert took %s% milliseconds.", int(round(time.time() - start_time) * 1000))
+    print("Insert took {} milliseconds.".format((time.time() - start_time) * 1000))
 
-    if phone_book.size() != 1000000:
-        raise Exception("Did not insert all data.")
+    assert phone_book.size() == 1000000
     print("The size of the PhoneBook is 1000000.")
 
     num_of_finds: int = 0
     start_time = time.time()
     for line in search_data:
-        if phone_book.find(line) == -1:
-            raise Exception("Did not find someone in the phone book.")
+        line = line.strip()
+        assert phone_book.find(line) != -1
         num_of_finds += 1
 
-    if num_of_finds != 1000:
-        raise Exception("Did not find all names in phone book.")
+    assert num_of_finds == 1000
     print("find() was called 1000 times.")
 
-    print("Search took %s% milliseconds.", time.time() - start_time)
+    print("Search took {} milliseconds.".format((time.time() - start_time) * 1000))
 
 def main():
-    get_bigO_of_unordered_list()
-    #get_bigO_of_bst()
+    get_bigO_of_unordered_list("..\\data\\data.csv", "..\\data\\search.txt")
+    get_bigO_of_bst("..\\data\\data.csv", "..\\data\\search.txt")
 
 if __name__ == "__main__":
     main()
 
 """
 What is the output of your program when you use a ListPhoneBook? --> 
+     Printing out unordered list info...
+    Insert took 2128.3249855041504 milliseconds.
+    The size of the PhoneBook is 1000000.
+    find() was called 1000 times.
+    Search took 104192.5060749054 milliseconds.
+     
 What is the output of your program when you use a BinarySearchTreePhoneBook? --> 
+    Printing out bst info...
+    Insert took 29027.835845947266 milliseconds.
+    The size of the PhoneBook is 1000000.
+    find() was called 1000 times.
+    Search took 37.2004508972168 milliseconds.
+    
 Why is there a difference in the running times for the two implementations? -->
     This is because finding an element in a BST is O(logN) vs. whereas finding an element in an unordered list is O(n).
     BSTs' cut down time by ordering the inserts and allowing comparisons to choose which node (left or right) to 
